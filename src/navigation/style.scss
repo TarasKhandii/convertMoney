@@ -4,15 +4,17 @@
 .navigationBlock {
   background-color: $white;
   width: 83.3%;
-  height: 45.5%;
+  height: 46%;
   border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
   &__header {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
     overflow: hidden;
     align-items: center;
     border-top-left-radius: 16px;
@@ -20,9 +22,9 @@
   }
   &__link {
     background-color: $lightBlue;
-    width: calc(100% / 5);
     height: 68px;
     display: flex;
+    flex: 1;
     align-items: center;
     font-family: Roboto;
     font-size: 20px;

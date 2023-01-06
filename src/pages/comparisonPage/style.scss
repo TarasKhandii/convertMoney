@@ -1,13 +1,23 @@
-@import './../../assets/style/colors/colors.scss';
-@import './../../assets/style/fonts/fonts.scss';
+@import "./../../assets/style/colors/colors.scss";
+@import "./../../assets/style/fonts/fonts.scss";
 
-.comparisonPage{
+.comparisonPage {
+  display: flex;
+  flex-direction: row;
+  margin-top: 43px;
+  padding: 0 2.8%;
+
+  &__dropBox {
     display: flex;
+    flex-direction: column;
+    margin-left: 50px;
     align-items: center;
-    & h1{
-        font-family: Roboto;
-        font-size: 20px;
-        line-height: 24px;
-        margin-left:8px ;
+    justify-content: space-between;
+    .dropMenu:nth-child(2) {
+      margin-top: 10px;
     }
+  }
+  &__btn {
+    margin-top: 20px;
+  }
 }

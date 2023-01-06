@@ -1,11 +1,50 @@
-import React from "react";
-import './style.scss'
+import React, { useCallback, useState } from "react";
+import Btn from "../../component/btn";
+import Calendar from "../../component/calendar";
+import DropMenu from "../../component/dropMenu";
+import "./style.scss";
 
-const ComparisonPage: React.FC = ()=>{
-    return(
-        <div className="comparisonPage">
-            <h1>Comparison</h1>
+const ComparisonPage: React.FC = () => {
+  const [startDate, setStartDate] = useState<Array<Date | null>>([
+    new Date(),
+    new Date(),
+  ]);
+
+  const handleSelectDate = useCallback(
+    (startDate: [Date | null, Date | null]) => {
+      setStartDate(startDate);
+    },
+    []
+  );
+
+  function dropMenuHandler(item: string) {
+    console.log(item);
+    console.log("1");
+  }
+  return (
+    <div className="comparisonPage">
+      <Calendar
+        startDate={startDate[0]}
+        setStartDate={handleSelectDate}
+        endDate={startDate[1]}
+      />
+      <div className="comparisonPage__dropBox">
+        <DropMenu
+          width="100%"
+          title="Base Currency:"
+          onCheck={dropMenuHandler}
+        />
+        <DropMenu
+          width="100%"
+          title="Current Currency:"
+          onCheck={dropMenuHandler}
+        />
+        <div className="comparisonPage__btn">
+          <Btn title="Send" />
         </div>
-    )
-}
-export default ComparisonPage
+      </div>
+    </div>
+  );
+};
+
+export default ComparisonPage;

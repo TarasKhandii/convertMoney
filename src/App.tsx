@@ -1,8 +1,7 @@
-import "./App.css";
+import "./App.scss";
 
 import MainBackground from "./assets/image/index.png";
 import Navigation from "./navigation";
-import NavRouters from "./router";
 
 function App() {
   return (
@@ -14,8 +13,8 @@ function App() {
       />
       <div className="contentWrapper">
         <div className="mainContainer">
+          <h1>The currency converter</h1>
           <Navigation />
-          {/* <NavRouters /> */}
         </div>
       </div>
     </div>

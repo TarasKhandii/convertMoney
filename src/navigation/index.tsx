@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.scss";
-import { Outlet } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Links from "../constantData/navlinks";
 import NavRouters from "../router";
