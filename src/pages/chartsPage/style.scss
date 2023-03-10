@@ -1,0 +1,23 @@
+@import "./../../assets/style/colors/colors.scss";
+@import "./../../assets/style/fonts/fonts.scss";
+
+.chartsPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 43px;
+  padding: 0 2.8%;
+  &__dropBox {
+    width: 27.6%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    align-items: center;
+    .dropMenu:nth-child(2) {
+      margin-top: 10px;
+    }
+  }
+  &__btn {
+    margin-top: 20px;
+  }
+}

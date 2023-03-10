@@ -1,0 +1,42 @@
+@import "./../../assets/style/colors/colors.scss";
+@import "./../../assets/style/fonts/fonts.scss";
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  width: 27.6%;
+  span {
+    margin: 0;
+    margin-bottom: 13px;
+    font-family: Roboto;
+    color: $black;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  input {
+    outline: none;
+    height: 56px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    background-color: $white;
+    color: $black;
+    font-size: 20px;
+    line-height: 24px;
+    font-family: Roboto;
+    padding: 0;
+    padding: 0 16px;
+    margin: 0;
+  }
+  input::placeholder {
+    color: grey;
+    font-size: 20px;
+    line-height: 24px;
+    font-family: Roboto;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

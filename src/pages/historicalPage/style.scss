@@ -1,0 +1,40 @@
+@import "./../../assets/style/colors/colors.scss";
+@import "./../../assets/style/fonts/fonts.scss";
+
+.historicalPage {
+  display: flex;
+  flex-direction: row;
+  margin-top: 43px;
+  padding: 0 2.8%;
+  justify-content: space-between;
+
+  &__dropBox {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-top: 20px;
+    align-items: center;
+    width: 27.6%;
+  }
+  &__btn {
+    margin-top: 30px;
+  }
+  &__result {
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    gap: 12px 20px;
+    height: 300px;
+    overflow-y: scroll;
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 18px;
+    color: $black;
+    &Items {
+      min-width: 30%;
+      background-color: $lightBlue;
+      border-radius: 10px;
+      padding: 10px;
+    }
+  }
+}

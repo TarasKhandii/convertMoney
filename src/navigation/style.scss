@@ -1,0 +1,53 @@
+@import "./../assets/style/colors/colors.scss";
+@import "./../assets/style/fonts/fonts.scss";
+
+.navigationBlock {
+  background-color: $white;
+  width: 83.3%;
+  height: 46%;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &__header {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: hidden;
+    align-items: center;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  &__link {
+    background-color: $lightBlue;
+    height: 68px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    font-family: Roboto;
+    font-size: 20px;
+    line-height: 24px;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: $blue;
+    transition: background-color 0.7s ease, color 0.7s ease;
+    svg {
+      margin-right: 8px;
+      path {
+        fill: $blue;
+      }
+    }
+    &.active {
+      background-color: $white;
+      color: $black;
+      svg {
+        path {
+          fill: $black;
+        }
+      }
+    }
+  }
+}

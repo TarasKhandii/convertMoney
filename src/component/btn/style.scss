@@ -1,0 +1,22 @@
+@import "./../../assets/style/colors/colors.scss";
+@import "./../../assets/style/fonts/fonts.scss";
+
+.btn {
+  display: flex;
+  width: 153px;
+  height: 56px;
+  background-color: $blue;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: $white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #00bfff;
+}
+.btn:active {
+  background-color: #1e90ff;
+}

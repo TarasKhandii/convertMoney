@@ -1,0 +1,45 @@
+@import "./assets/style/fonts/fonts.scss";
+@import "./assets/style/colors/colors.scss";
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+.App {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.mainBackground {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+.contentWrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.mainContainer {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  h1 {
+    color: $white;
+    display: flex;
+    align-self: flex-start;
+    font-family: Roboto;
+    font-size: 52px;
+    line-height: 56px;
+    margin-bottom: 45px;
+    margin-left: 8.4%;
+  }
+}
