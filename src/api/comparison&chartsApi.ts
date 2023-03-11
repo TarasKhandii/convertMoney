@@ -8,6 +8,12 @@ export const getComparisonCharts = (
 ) => {
   return axios({
     method: "get",
-    url: `/timeseries?start_date=${startDate}&end_date=${endDate}&base=${base}&symbols=${symbols}`,
+    url: `/timeseries?`,
+    params: {
+      start_date: startDate,
+      end_date: endDate,
+      base,
+      symbols,
+    },
   });
 };

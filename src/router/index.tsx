@@ -5,15 +5,16 @@ import ComparisonPage from "../pages/comparisonPage";
 import ConvertPage from "../pages/convertPage";
 import HistoricalPage from "../pages/historicalPage";
 import HistoryPage from "../pages/historyPage";
+import { ROUTES } from "./routerTypes";
 
 const NavRouters = () => {
   return (
     <Routes>
-      <Route path="/" element={<ConvertPage />} />
-      <Route path="/historical" element={<HistoricalPage />} />
-      <Route path="/comparison" element={<ComparisonPage />} />
-      <Route path="/charts" element={<ChartsPage />} />
-      <Route path="/history" element={<HistoryPage />} />
+      <Route path={ROUTES.convertPage} element={<ConvertPage />} />
+      <Route path={ROUTES.historicalPage} element={<HistoricalPage />} />
+      <Route path={ROUTES.comparisonPage} element={<ComparisonPage />} />
+      <Route path={ROUTES.chartsPage} element={<ChartsPage />} />
+      <Route path={ROUTES.historyPage} element={<HistoryPage />} />
     </Routes>
   );
 };

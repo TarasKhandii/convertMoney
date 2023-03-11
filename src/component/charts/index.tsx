@@ -1,23 +1,14 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-  },
-];
+interface IData {
+  date: string;
+  value: number;
+}
 
 interface ChartsProps {
-  data: { data: Array<{ date: string; value: number }>; legend: string };
+  data: { data: Array<IData>; legend: string };
 }
+
 const Charts: React.FC<ChartsProps> = ({ data }) => {
   return (
     <div>
@@ -31,4 +22,5 @@ const Charts: React.FC<ChartsProps> = ({ data }) => {
     </div>
   );
 };
+
 export default Charts;

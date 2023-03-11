@@ -15,9 +15,11 @@ export const ComparisonChartsReducer = (
 ): ComparisonChartsState => {
   switch (action.type) {
     case ComparisonChartsTypes.COMPARISON__CHARTS__LOADING:
-      return { loading: true, res: {} };
+      return { ...state, loading: action.payload };
+
     case ComparisonChartsTypes.GET__COMPARISON__CHARTS:
-      return { loading: false, res: action.payload };
+      return { ...state, res: action.payload };
+
     default:
       return state;
   }

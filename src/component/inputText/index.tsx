@@ -1,6 +1,4 @@
-// Libraries
 import { useCallback } from "react";
-// Style
 import "./style.scss";
 
 interface InputProps {
@@ -15,6 +13,7 @@ const InputText: React.FC<InputProps> = ({ onChange, valueInput }) => {
     },
     [onChange]
   );
+
   return (
     <div className="inputBlock">
       <span>Amount</span>
@@ -29,4 +28,5 @@ const InputText: React.FC<InputProps> = ({ onChange, valueInput }) => {
     </div>
   );
 };
+
 export default InputText;

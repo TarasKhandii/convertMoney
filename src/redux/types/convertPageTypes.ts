@@ -9,7 +9,6 @@ export interface ConvertState {
     };
   };
   loading: boolean;
-  // error: null | string;
 }
 
 export enum ConvertActionTypes {
@@ -19,6 +18,7 @@ export enum ConvertActionTypes {
 
 interface ConvertLoadingAction {
   type: ConvertActionTypes.CONVERT__LOADING;
+  payload: boolean;
 }
 
 interface GetConvertSuccessAction {

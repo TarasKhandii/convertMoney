@@ -1,11 +1,6 @@
-// Libraries
 import clsx from "clsx";
 import { useCallback, useState, MouseEvent } from "react";
-
-// Constant Data
 import { currencyList } from "../../constantData/currencyList";
-
-// Style
 import ICONS from "../../assets/icons";
 import "./style.scss";
 
@@ -23,7 +18,6 @@ const DropMenu: React.FC<DropMenuProps> = ({
   selectedValue,
 }) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
 
   const openDropMenu = useCallback(() => {
     setOpen((prev) => !prev);
@@ -32,7 +26,6 @@ const DropMenu: React.FC<DropMenuProps> = ({
   const setValueFunc = useCallback(
     (item: typeof currencyList[0]) => (e: MouseEvent<HTMLLIElement>) => {
       e.stopPropagation();
-      setValue(`${item.symbol} ${item.code} - ${item.label}`);
       setOpen(false);
       onChange?.(item);
     },
@@ -70,4 +63,5 @@ const DropMenu: React.FC<DropMenuProps> = ({
     </div>
   );
 };
+
 export default DropMenu;

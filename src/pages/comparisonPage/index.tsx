@@ -1,49 +1,47 @@
-// Libraries
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { Formik } from "formik";
 import { Audio } from "react-loader-spinner";
 import moment from "moment";
-// Component
 import Btn from "../../component/btn";
 import Calendar from "../../component/calendar";
 import DropMenu from "../../component/dropMenu";
-// Redux
 import { useActions } from "../../redux/hooks/useActions";
 import { useTypedSelector } from "../../redux/hooks/useTypedSelector";
-// Style
 import "./style.scss";
-// Constant
-import { currencyList } from "../../constantData/currencyList";
+import { currencyList, ICurrencyList } from "../../constantData/currencyList";
+import { generatorString } from "../../utils/generatorString";
 
-interface MyFormValues {
+interface FormValues {
   startDate: Date;
   endDate?: Date;
-  base: typeof currencyList[0];
-  symbols: typeof currencyList[1];
+  base: ICurrencyList;
+  symbols: ICurrencyList;
 }
 
 const ComparisonPage: React.FC = () => {
   const { loading, res } = useTypedSelector((state) => state.comparisonCharts);
   const { fetchComparisonCharts } = useActions();
 
-  const initialValues: MyFormValues = {
+  const initialValues: FormValues = {
     startDate: new Date(),
     endDate: new Date(),
     base: currencyList[0],
     symbols: currencyList[1],
   };
 
-  const resArr = res.rates ? Object.entries(res.rates) : [];
+  const newArr = useMemo(() => {
+    const resArr = res.rates ? Object.entries(res.rates) : [];
+    return resArr;
+  }, [res]);
+
+  const submitHandler = useCallback((v: FormValues) => {
+    let startDate = moment(v.startDate).format("YYYY-MM-DD");
+    let endDate = moment(v.endDate).format("YYYY-MM-DD");
+    fetchComparisonCharts(startDate, endDate, v.base.code, v.symbols.code);
+  }, []);
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(v) => {
-        let startDate = moment(v.startDate).format("YYYY-MM-DD");
-        let endDate = moment(v.endDate).format("YYYY-MM-DD");
-        fetchComparisonCharts(startDate, endDate, v.base.code, v.symbols.code);
-      }}
-    >
+    <Formik initialValues={initialValues} onSubmit={submitHandler}>
       {({ setFieldValue, handleSubmit, values }) => {
         return loading ? (
           <Audio
@@ -67,7 +65,11 @@ const ComparisonPage: React.FC = () => {
               <DropMenu
                 width="100%"
                 title="Base Currency:"
-                selectedValue={`${values.base?.symbol} ${values.base?.code} - ${values.base?.label}`}
+                selectedValue={generatorString(
+                  values.base.code,
+                  values.base.label,
+                  values.base.symbol
+                )}
                 onChange={(value) => {
                   setFieldValue("base", value);
                 }}
@@ -75,7 +77,11 @@ const ComparisonPage: React.FC = () => {
               <DropMenu
                 width="100%"
                 title="Current Currency:"
-                selectedValue={`${values.symbols?.symbol} ${values.symbols?.code} - ${values.symbols?.label}`}
+                selectedValue={generatorString(
+                  values.symbols.code,
+                  values.symbols.label,
+                  values.symbols.symbol
+                )}
                 onChange={(value) => {
                   setFieldValue("symbols", value);
                 }}
@@ -85,7 +91,7 @@ const ComparisonPage: React.FC = () => {
               </div>
             </div>
             <div className="comparisonPage__result">
-              {resArr.map((item, index) => {
+              {newArr.map((item, index) => {
                 return (
                   <span className="comparisonPage__resultItems" key={index}>{`${
                     item[0]

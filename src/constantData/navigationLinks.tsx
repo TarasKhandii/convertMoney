@@ -1,6 +1,6 @@
 import ICONS from "../assets/icons/index";
 
-const Links = [
+const NavLinks = [
   {
     link: "/",
     title: "Convert",
@@ -28,4 +28,4 @@ const Links = [
   },
 ];
 
-export default Links;
+export default NavLinks;

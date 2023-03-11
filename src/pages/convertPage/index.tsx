@@ -1,49 +1,40 @@
-// Libraries
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import clsx from "clsx";
 import { Formik } from "formik";
 import { Audio } from "react-loader-spinner";
-
-// Component
 import Btn from "../../component/btn";
 import DropMenu from "../../component/dropMenu";
 import InputText from "../../component/inputText";
-
-// Redux
 import { useActions } from "../../redux/hooks/useActions";
 import { useTypedSelector } from "../../redux/hooks/useTypedSelector";
-
-// Style
 import "./style.scss";
 import ICONS from "../../assets/icons";
-import { currencyList } from "../../constantData/currencyList";
+import { currencyList, ICurrencyList } from "../../constantData/currencyList";
 
-interface MyFormValues {
-  from?: typeof currencyList[0];
-  to?: typeof currencyList[0];
+interface FormValues {
+  from?: ICurrencyList;
+  to?: ICurrencyList;
   sum: string;
 }
 
 const ConvertPage: React.FC = () => {
   const { loading, res } = useTypedSelector((state) => state.convertPage);
   const { fetchConvert } = useActions();
+
   const [open, setOpen] = useState(false);
-  const initialValues: MyFormValues = {
+
+  const initialValues: FormValues = {
     from: currencyList[0],
     to: currencyList[1],
     sum: "1",
   };
 
+  const submitHandler = useCallback((v: FormValues) => {
+    v.from && v.to && v.sum && fetchConvert(v.from?.code, v.to?.code, v.sum);
+  }, []);
+
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(v) => {
-        v.from &&
-          v.to &&
-          v.sum &&
-          fetchConvert(v.from?.code, v.to?.code, v.sum);
-      }}
-    >
+    <Formik initialValues={initialValues} onSubmit={submitHandler}>
       {({ handleChange, setFieldValue, handleSubmit, values }) => {
         return loading ? (
           <Audio

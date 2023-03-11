@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { Formik } from "formik";
 import { Audio } from "react-loader-spinner";
 import moment from "moment";
@@ -12,32 +12,35 @@ import { useTypedSelector } from "../../redux/hooks/useTypedSelector";
 import { useActions } from "../../redux/hooks/useActions";
 // style
 import "./style.scss";
-import { currencyList } from "../../constantData/currencyList";
+import { currencyList, ICurrencyList } from "../../constantData/currencyList";
+import { generatorString } from "../../utils/generatorString";
 
-interface MyFormValues {
+interface FormValues {
   date: Date;
-  base?: typeof currencyList[0];
+  base: ICurrencyList;
 }
 
 const HistoricalPage: React.FC = () => {
   const { loading, res } = useTypedSelector((state) => state.historicalPage);
   const { fetchHistorical } = useActions();
 
-  const initialValues: MyFormValues = {
+  const initialValues: FormValues = {
     date: new Date(),
     base: currencyList[0],
   };
 
-  const resArr = res.rates ? Object.entries(res.rates) : [];
+  const newArr = useMemo(() => {
+    const resArr = res.rates ? Object.entries(res.rates) : [];
+    return resArr;
+  }, [res]);
+
+  const submitHandler = useCallback((v: FormValues) => {
+    let newDate = moment(v.date).format("YYYY-MM-DD");
+    v.base?.code && fetchHistorical(newDate, v.base?.code);
+  }, []);
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(v) => {
-        let newDate = moment(v.date).format("YYYY-MM-DD");
-        v.base?.code && fetchHistorical(newDate, v.base?.code);
-      }}
-    >
+    <Formik initialValues={initialValues} onSubmit={submitHandler}>
       {({ setFieldValue, handleSubmit, values }) => {
         return loading ? (
           <Audio
@@ -60,7 +63,11 @@ const HistoricalPage: React.FC = () => {
               <DropMenu
                 width="100%"
                 title="Base Currency:"
-                selectedValue={`${values.base?.symbol} ${values.base?.code} - ${values.base?.label}`}
+                selectedValue={generatorString(
+                  values.base.code,
+                  values.base.label,
+                  values.base.symbol
+                )}
                 onChange={(value) => {
                   setFieldValue("base", value);
                 }}
@@ -70,7 +77,7 @@ const HistoricalPage: React.FC = () => {
               </div>
             </div>
             <div className="historicalPage__result">
-              {resArr.map((item, index) => {
+              {newArr.map((item, index) => {
                 return (
                   <span className="historicalPage__resultItems" key={index}>{`${
                     item[0]

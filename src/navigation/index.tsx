@@ -1,14 +1,15 @@
 import React from "react";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
-import Links from "../constantData/navlinks";
+
 import NavRouters from "../router";
+import NavLinks from "../constantData/navigationLinks";
 
 const Navigation: React.FC = () => {
   return (
     <div className="navigationBlock">
       <div className="navigationBlock__header">
-        {Links.map((item, index) => {
+        {NavLinks.map((item, index) => {
           return (
             <NavLink
               className="navigationBlock__link"
@@ -25,4 +26,5 @@ const Navigation: React.FC = () => {
     </div>
   );
 };
+
 export default Navigation;

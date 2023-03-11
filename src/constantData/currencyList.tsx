@@ -1,3 +1,9 @@
+export interface ICurrencyList {
+  symbol: string;
+  label: string;
+  code: string;
+}
+
 export const currencyList = [
   { symbol: "€", label: "Euro ", code: "EUR" },
   { symbol: "$", label: "United States Dollar", code: "USD" },

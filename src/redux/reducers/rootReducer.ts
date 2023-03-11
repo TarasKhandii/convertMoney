@@ -8,5 +8,3 @@ export const rootReducer = combineReducers({
   historicalPage: HistoricalReducer,
   comparisonCharts: ComparisonChartsReducer,
 });
-
-export type RootState = ReturnType<typeof rootReducer>;

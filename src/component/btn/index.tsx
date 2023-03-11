@@ -12,4 +12,5 @@ const Btn: React.FC<BtnProps> = ({ title, onClick }) => {
     </button>
   );
 };
+
 export default Btn;

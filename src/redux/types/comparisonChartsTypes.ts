@@ -14,6 +14,7 @@ export enum ComparisonChartsTypes {
 
 interface ComparisonChartsLoadingActions {
   type: ComparisonChartsTypes.COMPARISON__CHARTS__LOADING;
+  payload: boolean;
 }
 
 interface ComparisonChartsSuccessActions {

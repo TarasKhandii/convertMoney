@@ -15,9 +15,11 @@ export const HistoricalReducer = (
 ): HistoricalState => {
   switch (action.type) {
     case HistoricalActionTypes.HISTORICAL__LOADING:
-      return { loading: true, res: {} };
+      return { ...state, loading: action.payload };
+
     case HistoricalActionTypes.GET__HISTORICAL__SUCCESS:
-      return { loading: false, res: action.payload };
+      return { ...state, res: action.payload };
+
     default:
       return state;
   }

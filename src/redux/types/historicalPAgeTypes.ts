@@ -14,6 +14,7 @@ export enum HistoricalActionTypes {
 
 interface HistoricalLoadingAction {
   type: HistoricalActionTypes.HISTORICAL__LOADING;
+  payload: boolean;
 }
 interface GetHistoricalSuccessAction {
   type: HistoricalActionTypes.GET__HISTORICAL__SUCCESS;

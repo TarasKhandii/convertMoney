@@ -7,7 +7,6 @@ import {
 const initialState: ConvertState = {
   res: {},
   loading: false,
-  // error: null,
 };
 
 export const convertPageReducer = (
@@ -16,9 +15,11 @@ export const convertPageReducer = (
 ): ConvertState => {
   switch (action.type) {
     case ConvertActionTypes.CONVERT__LOADING:
-      return { loading: true, res: {} };
+      return { ...state, loading: action.payload };
+
     case ConvertActionTypes.GET__CONVERT__SUCCESS:
-      return { loading: false, res: action.payload };
+      return { ...state, res: action.payload };
+
     default:
       return state;
   }

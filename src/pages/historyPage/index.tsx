@@ -32,11 +32,10 @@ const HistoryPage: React.FC = () => {
       </div>
       <div className="historyPage__btn">
         <Btn
-          // onClick={() => {
-          //   removeUserHistory;
-          //   reloadPage;
-          // }}
-          onClick={removeUserHistory}
+          onClick={() => {
+            removeUserHistory();
+            reloadPage();
+          }}
           title="Clear History"
         />
       </div>
